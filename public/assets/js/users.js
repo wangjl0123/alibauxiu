@@ -16,6 +16,27 @@ $(function() {
                 alert('用户添加失败')
             }
         })
+        return false;
     });
-    return false;
+
+    //上传用户头像
+    $('#avatar').on('change', function() {
+        var formData = new FormData();
+        formData.append('avatar', this.files[0])
+
+        $.ajax({
+            url: '/upload',
+            type: 'post',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(param) {
+                $('#youPhoto').attr('src', param[0].avatar)
+                $('#hidden').val(param[0].avatar)
+            },
+            error: function() {
+                alert('照片上传失败')
+            }
+        })
+    })
 })
