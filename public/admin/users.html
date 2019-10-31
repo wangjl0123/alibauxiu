@@ -169,6 +169,58 @@
         </tr>
         {{/each}}
     </script>
+    <script type="text/html" id="modifyTpl">
+        <form>
+            <h2>添加新用户</h2>
+            <div class="form-group">
+                <label>头像</label>
+                <div class="form-group">
+                    <label class="form-image">
+                <input id="avatar" type="file">
+                    {{if avatar}}
+                        <img id="youPhoto" src="{{avatar}}" alt="">
+                    {{else}}
+                        <img src="../assets/img/default.png" id='youPhoto'>
+                    {{/if}}
+                <i class="mask fa fa-upload"></i>
+            </label>
+                    <input type="hidden" name="avatar" id="hidden">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>邮箱</label>
+                <input class="form-control" type="email" placeholder="请输入邮箱" name="email" value="{{email}}">
+            </div>
+            <div class="form-group">
+                <label>昵称</label>
+                <input class="form-control" type="text" placeholder="请输入昵称" name="nickName" value="{{nickName}}">
+            </div>
+            <div class="form-group">
+                <label>密码</label>
+                <input class="form-control" type="password" placeholder="请输入密码" name="password">
+            </div>
+            <div class="form-group">
+                <div class="radio-inline">
+                    <label><input type="radio" name="status" value="0" checked="{{status == 0 ? 'checked' :''}}">未激活</label>
+
+                </div>
+                <div class="radio-inline">
+                    <label><input type="radio" name="status" value="1" checked="{{status == 1 ? 'checked' :''}}">激活</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="radio-inline">
+                    <label><input type="radio" name="role" value="admin" checked="{{role == admin ? 'checked' :''}}">超级管理员</label>
+                </div>
+                <div class="radio-inline">
+                    <label><input type="radio" name="role" value="normal" checked="{{role == normal ? 'normal':''}}">普通用户</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">修改</button>
+            </div>
+        </form>
+    </script>
     <script src="../assets/js/users.js"></script>
 </body>
 

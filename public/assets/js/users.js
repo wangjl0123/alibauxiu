@@ -48,4 +48,20 @@ $(function() {
             $('#userBody').html(html)
         }
     })
+
+    //用户修改
+    $('#userBody').on('click', '.edit', function() {
+        var id = $(this).attr('data-id')
+            // console.log(id);
+
+        $.ajax({
+            url: `/users/${id}`,
+            type: 'put',
+            success: function(data) {
+                // console.log(data);
+                var html = template('modifyTpl', data);
+                $('#userForm').html(html)
+            }
+        })
+    })
 })
