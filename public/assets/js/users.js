@@ -21,22 +21,31 @@ $(function() {
 
     //上传用户头像
     $('#avatar').on('change', function() {
-        var formData = new FormData();
-        formData.append('avatar', this.files[0])
+            var formData = new FormData();
+            formData.append('avatar', this.files[0])
 
-        $.ajax({
-            url: '/upload',
-            type: 'post',
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function(param) {
-                $('#youPhoto').attr('src', param[0].avatar)
-                $('#hidden').val(param[0].avatar)
-            },
-            error: function() {
-                alert('照片上传失败')
-            }
+            $.ajax({
+                url: '/upload',
+                type: 'post',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(param) {
+                    $('#youPhoto').attr('src', param[0].avatar)
+                    $('#hidden').val(param[0].avatar)
+                },
+                error: function() {
+                    alert('照片上传失败')
+                }
+            })
         })
+        // 获取用户列表
+    $.ajax({
+        url: '/users',
+        type: 'get',
+        success: function(data) {
+            var html = template('userTpl', { data: data })
+            $('#userBody').html(html)
+        }
     })
 })
