@@ -51,20 +51,19 @@ $(function() {
 
     //用户修改
     $('#userBody').on('click', '.edit', function() {
-            var id = $(this).attr('data-id')
-                // console.log(id);
-
-            $.ajax({
-                url: `/users/${id}`,
-                type: 'put',
-                success: function(data) {
-                    // console.log(data);
-                    var html = template('modifyTpl', data);
-                    $('#modifyBox').html(html)
-                }
-            })
+        var id = $(this).attr('data-id');
+        // console.log(id);
+        $.ajax({
+            url: `/users/${id}`,
+            type: 'put',
+            success: function(data) {
+                // console.log(data);
+                var html = template('modifyTpl', data);
+                $('#modifyBox').html(html)
+            }
         })
-        // 修改后的表单提交
+    });
+    // 修改后的表单提交
     $('#modifyBox').on('submit', '#modifyForm', function() {
         var formData = $(this).serialize();
         var id = $(this).attr('data-id')
