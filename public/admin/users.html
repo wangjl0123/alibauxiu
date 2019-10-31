@@ -33,7 +33,7 @@
         <strong>错误！</strong>发生XXX错误
       </div> -->
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4" id="modifyBox">
                     <form id="userForm">
                         <h2>添加新用户</h2>
                         <div class="form-group">
@@ -170,7 +170,7 @@
         {{/each}}
     </script>
     <script type="text/html" id="modifyTpl">
-        <form>
+        <form id="modifyForm" data-id="{{_id}}">
             <h2>添加新用户</h2>
             <div class="form-group">
                 <label>头像</label>
@@ -201,19 +201,19 @@
             </div>
             <div class="form-group">
                 <div class="radio-inline">
-                    <label><input type="radio" name="status" value="0" checked="{{status == 0 ? 'checked' :''}}">未激活</label>
+                    <label><input type="radio" name="status" value="0" {{status == '0' ? 'checked' : ''}}>未激活</label>
 
                 </div>
                 <div class="radio-inline">
-                    <label><input type="radio" name="status" value="1" checked="{{status == 1 ? 'checked' :''}}">激活</label>
+                    <label><input type="radio" name="status" value="1" {{status == '1' ? 'checked' : ''}}>激活</label>
                 </div>
             </div>
             <div class="form-group">
                 <div class="radio-inline">
-                    <label><input type="radio" name="role" value="admin" checked="{{role == admin ? 'checked' :''}}">超级管理员</label>
+                    <label><input type="radio" name="role" value="admin" {{role == 'admin' ? 'checked' : ''}}>超级管理员</label>
                 </div>
                 <div class="radio-inline">
-                    <label><input type="radio" name="role" value="normal" checked="{{role == normal ? 'normal':''}}">普通用户</label>
+                    <label><input type="radio" name="role" value="normal" {{role == 'admin' ? 'checked' : ''}}">普通用户</label>
                 </div>
             </div>
             <div class="form-group">

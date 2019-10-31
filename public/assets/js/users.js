@@ -20,7 +20,7 @@ $(function() {
     });
 
     //上传用户头像
-    $('#avatar').on('change', function() {
+    $('#modifyBox').on('change', '#avatar', function() {
             var formData = new FormData();
             formData.append('avatar', this.files[0])
 
@@ -51,17 +51,32 @@ $(function() {
 
     //用户修改
     $('#userBody').on('click', '.edit', function() {
-        var id = $(this).attr('data-id')
-            // console.log(id);
+            var id = $(this).attr('data-id')
+                // console.log(id);
 
+            $.ajax({
+                url: `/users/${id}`,
+                type: 'put',
+                success: function(data) {
+                    // console.log(data);
+                    var html = template('modifyTpl', data);
+                    $('#modifyBox').html(html)
+                }
+            })
+        })
+        // 修改后的表单提交
+    $('#modifyBox').on('submit', '#modifyForm', function() {
+        var formData = $(this).serialize();
+        var id = $(this).attr('data-id')
         $.ajax({
-            url: `/users/${id}`,
             type: 'put',
+            url: `/users/${id}`,
+            data: formData,
             success: function(data) {
-                // console.log(data);
-                var html = template('modifyTpl', data);
-                $('#userForm').html(html)
+                location.reload()
             }
         })
+        return false;
     })
+
 })
